@@ -1,13 +1,18 @@
+// Required dependencies:
+// From Arduino library manager: ArduinoJson, TaskScheduler
+// From Github (https://github.com/me-no-dev/AsyncTCP): AsyncTCP
+    // to install, download as zip file
+    // Sketch --> Include Library --> Add .zip libary
+    
 #include <painlessMesh.h>
 #include <AsyncTCP.h>
 
 Scheduler userScheduler; // to control your personal task
 painlessMesh mesh;
 
-#define   MESH_PREFIX     "whateverYouLike"
-#define   MESH_PASSWORD   "somethingSneaky"
-#define   MESH_PORT       5555
-
+#define   ssid     "akw-takeover"
+#define   password   "scott-squad"
+#define   port       5555
 
 // User stub
 void sendMessage(); // Prototype so PlatformIO doesn't complain
@@ -15,10 +20,10 @@ void sendMessage(); // Prototype so PlatformIO doesn't complain
 Task taskSendMessage( TASK_SECOND * 1 , TASK_FOREVER, &sendMessage );
 
 void sendMessage() {
-  String msg = "Hello from node ";
+  String msg = "this is SAB ";
   msg += mesh.getNodeId();
   mesh.sendBroadcast( msg );
-  taskSendMessage.setInterval( random( TASK_SECOND * 1, TASK_SECOND * 5 ));
+  taskSendMessage.setInterval(random( TASK_SECOND * 1, TASK_SECOND * 5 ));
 }
 
 // Needed for painless library
@@ -42,7 +47,7 @@ void nodeTimeAdjustedCallback(int32_t offset) {
 void setup() {
   Serial.begin(115200);
   mesh.setDebugMsgTypes( ERROR | STARTUP );  // set before init() so that you can see startup messages
-  mesh.init( MESH_PREFIX, MESH_PASSWORD, &userScheduler, MESH_PORT );
+  mesh.init( ssid, password, &userScheduler, port );
 
   mesh.onReceive(&receivedCallback);
   mesh.onNewConnection(&newConnectionCallback);
