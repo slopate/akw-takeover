@@ -1,21 +1,27 @@
-import hypermedia.net.*;
+import oscP5.*;
+import netP5.*;
 
-int PORT = 57222;
-String IP = "192.168.1.2";
-UDP udp;
+OscP5 oscP5;
 
 void setup() {
-    udp = new UDP(this, PORT, IP);
-    udp.listen(true);
-    size(500, 500);
-    colorMode(HSB);
+  size(720, 480);
+  sine = new SinOsc(this);
+  sine.play();
+  sine.amp(amp);
+
+  oscP5 = new OscP5(this, 44444);   //listening
 }
 
-void draw() {
+/* incoming osc message are forwarded to the oscEvent method. */
+void oscEvent(OscMessage theOscMessage) {
+  print("### received an osc message.");
+  println(" addrpattern: "+theOscMessage.addrPattern());
 
-}
+//   photoVal = theOscMessage.get(0).intValue();
+//   piezoVal = theOscMessage.get(1).intValue();
+//   touchVal = theOscMessage.get(2).intValue();
 
-void receive(byte[] data, String PORT, int IP) {
-    String value = new String(data);
-    println(value);
+//   print(theOscMessage.get(0).intValue() + "--");
+//   print(theOscMessage.get(1).intValue() + "--");
+//   println(theOscMessage.get(2).intValue());
 }
