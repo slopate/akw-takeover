@@ -1,1 +1,1 @@
-painlessMeshBoost --client 10.29.21.1 >> mesh_logs.log
+painlessMeshBoost --client 10.55.222.1

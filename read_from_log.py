@@ -8,7 +8,7 @@ import time
 def parseLogEntry(raw_input):
 
 
-    return raw_input
+    return "hello"
 
 class Listener():
 	osc_client = None
