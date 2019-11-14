@@ -7,8 +7,11 @@ import time
 
 def parseLogEntry(raw_input):
 
-
-    return "hello"
+    try:
+        input = json.loads(raw_input)
+        return [input['msg']]
+    except Exception as e:
+        return [raw_input]
 
 class Listener():
 	osc_client = None
