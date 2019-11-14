@@ -26,18 +26,20 @@ def generateSimulatedMessage():
     msg
     if (val == 0):
         # generate sarim value
-
+        msg = ""
     elif (val == 1):
         # generate daniel value
-
+        msg = ""
     elif (val == 2):
         # generate sam value
-
+        msg = ""
     elif (val == 3):
         # generate sabrina value
-
+        msg = ""
     elif (val == 4):
         # generate alexi value
+        msg = ""
+
 
     return [msg]
     
@@ -76,7 +78,7 @@ def main():
             print(e)
 
     else: 
-       file = open('mesh_logs.log', 'r')
+        file = open('mesh_logs.log', 'r')
         while True:
             where = file.tell()
             line = file.readline()
