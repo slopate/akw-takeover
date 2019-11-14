@@ -26,7 +26,7 @@ class Listener():
 
 
 def main():
-    file = fopen('mesh_logs.log')
+    file = open('mesh_logs.log', 'r')
 
     c = OSC.OSCClient()
     c.connect(('127.0.0.1', 44444))
