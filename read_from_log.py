@@ -38,12 +38,12 @@ def generateSimulatedMessage():
         msg = ""
     elif (val == 3):
         # generate sabrina value
-	val1 = random.randint(0, 4095)
-	val2 = sabrina_sim_time
+	sab1 = random.randint(0, 4095)
+	sab2 = sabrina_sim_time
 	sabrina_sim_time += 1
 	if sabrina_sim_time > 15:
 		sabrina_sim_time = 0
-        msg = "sabrina--%d--%d" % val1 % val2
+        msg = "sabrina--{}--{}".format(sab1, sab2)
     elif (val == 4):
         # generate alexi value
         msg = ""
