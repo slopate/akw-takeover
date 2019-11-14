@@ -15,6 +15,8 @@ def parseLogEntry(raw_input):
     except Exception as e:
         return [raw_input]
 
+sabrina_sim_time = 0
+
 def generateSimulatedMessage():
     val = random.randint(0, 4)
 
@@ -29,13 +31,19 @@ def generateSimulatedMessage():
         msg = ""
     elif (val == 1):
         # generate daniel value
-        msg = ""
+	sensorval = random.randint(0, 4095)
+        msg = f"daniel--{sensorval}"
     elif (val == 2):
         # generate sam value
         msg = ""
     elif (val == 3):
         # generate sabrina value
-        msg = ""
+	val1 = random.randint(0, 4095)
+	val2 = sabrina_sim_time
+	sabrina_sim_time += 1
+	if sabrina_sim_time > 15:
+		sabrina_sim_time = 0
+        msg = "sabrina--%d--%d" % val1 % val2
     elif (val == 4):
         # generate alexi value
         msg = ""
