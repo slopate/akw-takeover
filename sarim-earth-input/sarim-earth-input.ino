@@ -1,11 +1,14 @@
-//#include <AxisJoystick.h>
+#include <AxisJoystick.h>
 #define VRX 26
 #define VRY 27
 #define JOY_LOW 0
 #define JOY_HIGH 4095
+#define NUM_LED 4
 
-//AxisJoystick joystick(-1, VRX, VRY);
-int LEDPins[] = {12, 14, 27, 33, 23, 22, 21, 19};
+AxisJoystick joystick(-1, VRX, VRY);
+//int LEDPins[] = {12, 14, 27, 33, 23, 22, 21, 19};
+int LEDPins[] = {32, 33, 26, 27};
+
 
 void mapJoystickToLED();
 int getYAxis();
@@ -23,23 +26,23 @@ void animateComplete() {
 }
 
 int getYAxis() {
-//    if (joystick.isUp()) {
-//        return -1;
-//    } else if (joystick.isDown()) {
-//        return +1;
-//    } else {
-//        return 0;
-//    }
+    if (joystick.isUp()) {
+        return -1;
+    } else if (joystick.isDown()) {
+        return +1;
+    } else {
+        return 0;
+    }
 }
 
 int getXAxis() {
-//    if (joystick.isLeft()) {
-//        return -1;
-//    } else if (joystick.isRight()) {
-//        return +1;
-//    } else {
-//        return 0;
-//    }
+    if (joystick.isLeft()) {
+        return -1;
+    } else if (joystick.isRight()) {
+        return +1;
+    } else {
+        return 0;
+    }
 }
 
 void setLowAllExcept(int LEDNotLow) {
@@ -106,17 +109,21 @@ void setup() {
     Serial.begin(9600);
 //    joystick.calibrate(JOY_LOW, JOY_HIGH);
 
-    for (int i = 0; i < 8; i++) {
+    for (int i = 0; i < NUM_LED; i++) {
         pinMode(LEDPins[i], OUTPUT);
+        digitalWrite(LEDPins[i], HIGH);
     }
 }
 
 void loop() {
     // put your main code here, to run repeatedly:
-    //  joystick.multipleRead();
+//    joystick.multipleRead();
 
-    //  mapJoystickToLED();
+//    mapJoystickToLED();
 
-    animateComplete();
-    delay(5000);
+//    animateComplete();
+//    delay(5000);
+    for (int i = 0; i < NUM_LED; i++) {
+        digitalWrite(LEDPins[i], HIGH);
+    }
 }

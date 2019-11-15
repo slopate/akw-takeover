@@ -25,3 +25,15 @@ The enclosure is hollow, which has the benefit of having enough space for all th
 The volcano was painted using acrylic paint. 
 
 ![Volcano Paint](./docs/volcano_painted.png)
+
+## Technical Problems
+
+1. Pins for LED output
+
+Not all pins were suitable. Those that were:
+
+- Left track
+  - GPIO32
+  - GPIO33
+  - GPIO26
+  - GPIO27
