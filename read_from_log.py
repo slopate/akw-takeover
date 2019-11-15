@@ -50,7 +50,12 @@ def generateSimulatedMessage():
             msg = "sabrina--%d--%d" % val1 % val2
     elif val == 4:
         # generate alexi value
-        msg = ""
+        sensor = random.randint(0, 40)
+        on = random.randint(0, 1)
+        if on:
+            sensor = 4095
+
+        msg = "alexi--%d" % sensor
 
     return [msg]
 
