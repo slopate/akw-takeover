@@ -1,12 +1,11 @@
-#include <AxisJoystick.h>
-#define SW
+//#include <AxisJoystick.h>
 #define VRX 26
 #define VRY 27
 #define JOY_LOW 0
 #define JOY_HIGH 4095
 
-AxisJoystick joystick(-1, VRX, VRY);
-int LEDPins[] = {15, 2, 0, 4, 16, 17, 5, 18};
+//AxisJoystick joystick(-1, VRX, VRY);
+int LEDPins[] = {12, 14, 27, 33, 23, 22, 21, 19};
 
 void mapJoystickToLED();
 int getYAxis();
@@ -24,23 +23,23 @@ void animateComplete() {
 }
 
 int getYAxis() {
-    if (joystick.isUp()) {
-        return -1;
-    } else if (joystick.isDown()) {
-        return +1;
-    } else {
-        return 0;
-    }
+//    if (joystick.isUp()) {
+//        return -1;
+//    } else if (joystick.isDown()) {
+//        return +1;
+//    } else {
+//        return 0;
+//    }
 }
 
 int getXAxis() {
-    if (joystick.isLeft()) {
-        return -1;
-    } else if (joystick.isRight()) {
-        return +1;
-    } else {
-        return 0;
-    }
+//    if (joystick.isLeft()) {
+//        return -1;
+//    } else if (joystick.isRight()) {
+//        return +1;
+//    } else {
+//        return 0;
+//    }
 }
 
 void setLowAllExcept(int LEDNotLow) {
@@ -105,7 +104,7 @@ void mapJoystickToLED() {
 void setup() {
     // put your setup code here, to run once:
     Serial.begin(9600);
-    joystick.calibrate(JOY_LOW, JOY_HIGH);
+//    joystick.calibrate(JOY_LOW, JOY_HIGH);
 
     for (int i = 0; i < 8; i++) {
         pinMode(LEDPins[i], OUTPUT);
