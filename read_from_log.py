@@ -31,8 +31,8 @@ def generateSimulatedMessage():
     if val == 0:
         # generate sarim value
         sensorval = random.randint(0, 1)
-        # if sensorval == 1:
-        #     msg = "sarim--completed"
+        if sensorval == 1:
+            msg = "sarim--completed"
     elif val == 1:
         # generate daniel value
         sensorval = random.randint(0, 4095)
