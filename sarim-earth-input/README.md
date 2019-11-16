@@ -37,3 +37,8 @@ Not all pins were suitable. Those that were:
   - GPIO33
   - GPIO26
   - GPIO27
+- Right track
+  - GPIO19
+  - GPIO18
+  - GPIO5
+  - GPIO17
