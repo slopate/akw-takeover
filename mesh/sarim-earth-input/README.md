@@ -1,7 +1,8 @@
 # Earth input
 
 - [Earth input](#earth-input)
-  - [Design](#design)
+  - [Video demo](#video-demo)
+  - [Design decisions](#design-decisions)
     - [LED ring](#led-ring)
     - [Enclosure](#enclosure)
     - [Activation algorithm](#activation-algorithm)
@@ -14,7 +15,11 @@ I decided to adopt the earth element, more specifically lava.
 
 I had an idea that I wanted the viewer to interact using a joystick. After a number of iterations, I decided on making the viewer rotate the joystick 360 degrees to activate an LED ring.
 
-## Design
+## Video demo
+
+On YouTube at: <https://www.youtube.com/watch?v=M_mOXDXI0_c>
+
+## Design decisions
 
 ### LED ring
 
@@ -67,4 +72,4 @@ With the joystick attached to 5V and GND, along with the 8 LEDs, the ESP32 would
 
 ### Reducing the amount of wire needed
 
-Instead of eight 5V/GND pairs of wire, with 8 resistors, I simplified the circuit greatly by making the 8 LEDs share a ground and a single resistor. The challenge was soldering the LED GNDs together, which was done with a lot of solder.
+Instead of eight 5V/GND pairs of wire, with 8 resistors, I simplified the circuit greatly by making the 8 LEDs share a ground and a single resistor. The challenge was getting all the cathodes together, which was done with a lot of solder.

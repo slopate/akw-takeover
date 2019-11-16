@@ -4,7 +4,7 @@
 #define JOY_LOW 0
 #define JOY_HIGH 4095
 #define NUM_LED 8
-#define ACTIVATION_THRESHOLD 100
+#define ACTIVATION_THRESHOLD 50
 
 AxisJoystick joystick(-1, VRX, VRY);
 int LEDPins[] = {26, 33, 27, 5, 17, 19, 18, 32};
