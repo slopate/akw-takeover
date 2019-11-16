@@ -1,1 +1,0 @@
-painlessMeshBoost --client 10.29.21.1 >> mesh_logs.log
