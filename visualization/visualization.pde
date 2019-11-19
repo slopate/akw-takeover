@@ -11,6 +11,10 @@ void setup() {
   oscP5 = new OscP5(this, 44444);   //listening
 }
 
+void draw() {
+  
+}
+
 /* incoming osc message are forwarded to the oscEvent method. */
 void oscEvent(OscMessage theOscMessage) {
   print("### received an osc message.");
