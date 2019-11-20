@@ -7,6 +7,8 @@ import sys
 import time
 import json
 
+sabrina_sim_time = 0
+
 
 def parseLogEntry(raw_input):
     try:
@@ -16,7 +18,6 @@ def parseLogEntry(raw_input):
         return [raw_input]
 
 
-sabrina_sim_time = 0
 
 
 def generateSimulatedMessage():
@@ -39,7 +40,7 @@ def generateSimulatedMessage():
         msg = "daniel--%d" % sensorval
     elif val == 2:
         # generate sam value
-        msg = ""
+        msg = "sam--%d" % 0
     elif val == 3:
         # generate sabrina value
         val1 = random.randint(0, 4095)

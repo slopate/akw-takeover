@@ -3,6 +3,9 @@ import processing.data.*;
 import processing.event.*; 
 import processing.opengl.*; 
 
+import oscP5.*; 
+import netP5.*; 
+
 import java.util.HashMap; 
 import java.util.ArrayList; 
 import java.io.File; 
@@ -14,47 +17,83 @@ import java.io.IOException;
 
 public class visualization extends PApplet {
 
-boolean running = true;
-BufferedInputStream reader = new BufferedInputStream(new FileInputStream( "out.txt" ) );
 
-public void run() {
-    while ( running ) {
-        if ( reader.available() > 0 ) {
-            System.out.print( (char)reader.read() );
-        }
-        else {
-            try {
-                sleep( 500 );
-            }
-            catch ( InterruptedException ex ) {
-                running = false;
-            }
-        }
-    }
+
+
+OscP5 oscP5;
+
+String val;
+
+AlexiViz alexiViz;
+
+int alexiData = 0;
+int danielData = 0;
+int samData = 0;
+int sarimData = 0;
+int[] sabrinaData = {0, 0};
+
+public void setup() {
+  
+
+  oscP5 = new OscP5(this, 44444);   //listening
+
+  alexiViz = new AlexiViz();
 }
 
+public void draw() {
+  alexiViz.draw(alexiData, danielData, samData, sarimData, sabrinaData);
+}
 
-// import hypermedia.net.*;
+/* incoming osc message are forwarded to the oscEvent method. */
+public void oscEvent(OscMessage theOscMessage) {
+  val = theOscMessage.get(0).stringValue();
 
-// int PORT = 5555;
-// String IP = "192.168.1.2";
-// UDP udp;
+  String[] parsed = val.split("--");
+  try {
+    switch(parsed[0]) {
+      case "sarim": {
+        sarimData = PApplet.parseInt(parsed[1]);
+        break;
+      }
 
-// void setup() {
-//     udp = new UDP(this, PORT, IP);
-//     udp.listen(true);
-//     size(500, 500);
-//     colorMode(HSB);
-// }
+      case "daniel": {
+        danielData = PApplet.parseInt(parsed[1]);
+        break;
+      }
 
-// void draw() {
+      case "alexi": {
+        alexiData = PApplet.parseInt(parsed[1]);
+        break;
+      }
 
-// }
+      case "sabrina": {
+        sabrinaData[0] = PApplet.parseInt(parsed[1]);
+        sabrinaData[1] = PApplet.parseInt(parsed[2]);
+        break;
+      }
 
-// void receive(byte[] data, String PORT, int IP) {
-//     String value = new String(data);
-//     println(value);
-// }
+      case "sam": {
+        samData = PApplet.parseInt(parsed[1]);
+        break;
+      }
+
+      default:
+        break;
+    }
+  } catch(Exception e) {
+    println("ERROR: unexpected message");
+  }
+}
+class AlexiViz {
+    AlexiViz() {
+
+    }
+
+    public void draw(int alexiData, int danielData, int samData, int sarimData, int[] sabrinaData) {
+
+    }
+}
+  public void settings() {  size(720, 480); }
   static public void main(String[] passedArgs) {
     String[] appletArgs = new String[] { "--present", "--window-color=#666666", "--stop-color=#cccccc", "visualization" };
     if (passedArgs != null) {
