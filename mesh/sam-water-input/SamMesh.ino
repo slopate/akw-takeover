@@ -25,7 +25,7 @@ void sendMessage(); // Prototype so PlatformIO doesn't complain
 Task taskSendMessage( TASK_SECOND * 1 , TASK_FOREVER, &sendMessage );
 
 void sendMessage() {
-  String msg = String("sam-" + ampValL + "-" + ampValC + "-" + ampValR + "-");
+  String msg = String("sam--" + ampValL + "--" + ampValC + "--" + ampValR + "--");
   msg += mesh.getNodeId();
   mesh.sendBroadcast( msg );
   taskSendMessage.setInterval(TASK_SECOND * 0.1);
