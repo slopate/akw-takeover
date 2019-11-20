@@ -55,7 +55,9 @@ void oscEvent(OscMessage theOscMessage) {
       }
 
       case "sam": {
-        samData = int(parsed[1]);
+        samData[0] = int(parsed[1]);
+        samData[1] = int(parsed[2]);
+        samData[2] = int(parsed[3]);
         break;
       }
 
