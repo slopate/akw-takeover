@@ -7,6 +7,8 @@ import sys
 import time
 import json
 
+sabrina_sim_time = 0
+
 
 def parseLogEntry(raw_input):
     try:
@@ -16,7 +18,6 @@ def parseLogEntry(raw_input):
         return [raw_input]
 
 
-sabrina_sim_time = 0
 
 
 def generateSimulatedMessage():
@@ -36,21 +37,12 @@ def generateSimulatedMessage():
     elif val == 1:
         # generate daniel value
         sensorval = random.randint(0, 4095)
-        msg = f"daniel--{sensorval}"
+        msg = "daniel--%d" % sensorval
     elif val == 2:
         # generate sam value
-        msg = ""
+        msg = "sam--%d" % 0
     elif val == 3:
         # generate sabrina value
-<<<<<<< HEAD
-	sab1 = random.randint(0, 4095)
-	sab2 = sabrina_sim_time
-	sabrina_sim_time += 1
-	if sabrina_sim_time > 15:
-		sabrina_sim_time = 0
-        msg = "sabrina--{}--{}".format(sab1, sab2)
-    elif (val == 4):
-=======
         val1 = random.randint(0, 4095)
         val2 = sabrina_sim_time
         sabrina_sim_time += 1
@@ -58,7 +50,6 @@ def generateSimulatedMessage():
             sabrina_sim_time = 0
             msg = "sabrina--%d--%d" % val1 % val2
     elif val == 4:
->>>>>>> 8c001ec64aea99ab09473280a46a92ab021b7ff1
         # generate alexi value
         sensor = random.randint(0, 40)
         on = random.randint(0, 1)
@@ -86,7 +77,7 @@ class Listener:
 
 
 def main():
-    mode = sys.argv(0)
+    mode = sys.argv[1]
 
     c = OSC.OSCClient()
     c.connect(("127.0.0.1", 44444))
@@ -96,12 +87,13 @@ def main():
 
     if mode == "sim":
         # generate data
-        msg = generateSimulatedMessage()
+        while True:
+            msg = generateSimulatedMessage()
 
-        try:
-            listener.sendOSC(msg)
-        except Exception as e:
-            print(e)
+            try:
+                listener.sendOSC(msg)
+            except Exception as e:
+                print(e)
 
     else:
         file = open("mesh_logs.log", "r")
