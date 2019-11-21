@@ -9,8 +9,8 @@ AlexiViz alexiViz;
 
 int alexiData = 0;
 int danielData = 0;
-int samData = 0;
 int sarimData = 0;
+int[] samData = {0, 0, 0};
 int[] sabrinaData = {0, 0};
 
 void setup() {
