@@ -40,7 +40,10 @@ def generateSimulatedMessage():
         msg = "daniel--%d" % sensorval
     elif val == 2:
         # generate sam value
-        msg = "sam--%d" % 0
+        sensor1val = random.randint(0, 1500)
+        sensor2val = random.randint(0, 1500)
+        sensor3val = random.randint(0, 1500)
+        msg = "sam--%d--%d--%d" % sensor1val % sensor2val % sensor3val
     elif val == 3:
         # generate sabrina value
         val1 = random.randint(0, 4095)

@@ -28,8 +28,8 @@ class SarimViz {
     
     void draw(int alexiData, 
               int danielData, 
-              int[] samData, 
               int sarimData, 
+              int[] samData, 
               int[] sabrinaData) {
 
         // generate gradient if elapsed frames == 0
