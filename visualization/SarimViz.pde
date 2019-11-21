@@ -103,7 +103,7 @@ class SarimViz {
 
 
     void drawCircle(color[] elementColor) {
-        float size = random (25, 100);
+        float size = random (80, 300);
         float x = random(width);
         float y = random(height);
         for (float ring = size; ring >= 0; ring -= random(2, 10)) {
@@ -129,7 +129,7 @@ class SarimViz {
 // SarimViz sv;
 
 // void setup() {
-//   size(500, 500); 
+//   size(720, 480); 
 //   background(64);
 //   noStroke();
 //   sv = new SarimViz();
