@@ -19,11 +19,13 @@ void setup() {
   oscP5 = new OscP5(this, 44444);   //listening
 
   alexiViz = new AlexiViz();
+  sarimViz = new sarimViz();
 }
 
 void draw() {
   // here we can switch between each of our classes
   alexiViz.draw(alexiData, danielData, samData, sarimData, sabrinaData);
+  sarimViz.draw(alexiData, danielData, samData, sarimData, sabrinaData);
 }
 
 /* incoming osc message are forwarded to the oscEvent method. */
