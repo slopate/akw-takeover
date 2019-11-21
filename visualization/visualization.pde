@@ -48,7 +48,7 @@ void draw() {
     frame = 0;
   }
 
-  frame++;
+  // frame++;
   println(frame);
 
 }

@@ -7,8 +7,6 @@ import sys
 import time
 import json
 
-sabrina_sim_time = 0
-
 
 def parseLogEntry(raw_input):
     try:
@@ -43,15 +41,15 @@ def generateSimulatedMessage():
         sensor1val = random.randint(0, 1500)
         sensor2val = random.randint(0, 1500)
         sensor3val = random.randint(0, 1500)
-        msg = "sam--%d--%d--%d" % sensor1val % sensor2val % sensor3val
+        msg = "sam--%d--%d--%d" % (sensor1val, sensor2val, sensor3val)
     elif val == 3:
         # generate sabrina value
         val1 = random.randint(0, 4095)
-        val2 = sabrina_sim_time
-        sabrina_sim_time += 1
-        if sabrina_sim_time > 15:
-            sabrina_sim_time = 0
-            msg = "sabrina--%d--%d" % val1 % val2
+        val2 = 15
+        # sabrina_sim_time += 1
+        # if sabrina_sim_time > 15:
+            # sabrina_sim_time = 0
+        msg = "sabrina--%d--%d" % (val1, val2)
     elif val == 4:
         # generate alexi value
         sensor = random.randint(0, 40)
@@ -80,6 +78,7 @@ class Listener:
 
 
 def main():
+
     mode = sys.argv[1]
 
     c = OSC.OSCClient()

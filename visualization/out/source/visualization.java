@@ -50,24 +50,27 @@ int frame = 0;
 int framesPer = 300 * 1;
 public void draw() {
 
-  // here we can switch between each of our classes
-  if (frame < framesPer) {
-    println("alexi");
-    alexiViz.draw(alexiData, danielData, sarimData, samData, sabrinaData);
-  } else if (frame < framesPer * 2) {
-    println("sarim");
-    sarimViz.draw(alexiData, danielData, sarimData, samData, sabrinaData);
-  } else if (frame < framesPer * 3) {
-    println("daniel");
-    // daniel
-  } else if (frame < framesPer * 4) {
-    println("sabrina");
     sabsViz.draw(alexiData, danielData, sarimData, samData, sabrinaData);
-  } else {
-    frame = 0;
-  }
 
-  frame++;
+
+  // here we can switch between each of our classes
+  // if (frame < framesPer) {
+  //   println("alexi");
+  //   alexiViz.draw(alexiData, danielData, sarimData, samData, sabrinaData);
+  // } else if (frame < framesPer * 2) {
+  //   println("sarim");
+  //   sarimViz.draw(alexiData, danielData, sarimData, samData, sabrinaData);
+  // } else if (frame < framesPer * 3) {
+  //   println("daniel");
+  //   // daniel
+  // } else if (frame < framesPer * 4) {
+  //   println("sabrina");
+  //   sabsViz.draw(alexiData, danielData, sarimData, samData, sabrinaData);
+  // } else {
+  //   frame = 0;
+  // }
+
+  // frame++;
   println(frame);
 
 }
@@ -385,7 +388,7 @@ class SarimViz {
         }
        
         // mandate delay
-        delay(2000);
+        // delay(2000);
     }
 
     /* ----------------------------- Helper methods ----------------------------- */
