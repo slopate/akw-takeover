@@ -57,7 +57,7 @@ void draw() {
 void oscEvent(OscMessage theOscMessage) {
   val = theOscMessage.get(0).stringValue();
 
-  String[] parsed = val.split("--");
+  String[] parsed = val.split("-");
   try {
     switch(parsed[0]) {
       case "sarim": {

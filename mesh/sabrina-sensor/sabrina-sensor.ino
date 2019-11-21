@@ -42,9 +42,9 @@ String readSensors() {
     else allowedSkips ++;
   }
 
-  String returnpiezo = String(piezoVal) + "--";
+  String returnpiezo = String(piezoVal) + "-";
   String returntime = String(touchTime);
-  String returnVal = String("sabrina--" + returnpiezo + returntime);
+  String returnVal = String("sabrina-" + returnpiezo + returntime + "-");
 
   Serial.println(returnVal);
   return returnVal;
