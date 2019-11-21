@@ -22,7 +22,7 @@ Demo video on YouTube: <https://www.youtube.com/watch?v=5bXN0hbBsPI>
 
 The mesh input data is visualized as concentric circles, one drawn for each data point. The circles are colored according to their source elements, i.e. air, water, earth, fire and lava. A new gradient background (computed from two randomized elements) is also set every 10 frames, which lets the visualization start anew. The proportion of each element's circles corresponds roughly to the respective inputs' usage by passerby.
 
-### Alexi's visualization
+#### Alexi's visualization
 
 ![Alexi viz](./docs/alexi_viz.png)
 
