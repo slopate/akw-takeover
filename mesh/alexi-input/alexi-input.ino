@@ -30,7 +30,7 @@ String readSensors() {
   int vibrationVal = analogRead(vibrationPin);
 
   String returnVibration = String(vibrationVal);
-  String returnVal = String("alexi--" + returnVibration);
+  String returnVal = String("alexi-" + returnVibration + "-");
 
   Serial.println(returnVal);
   return returnVal;
