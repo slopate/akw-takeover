@@ -6,6 +6,7 @@ OscP5 oscP5;
 String val;
 
 AlexiViz alexiViz;
+SarimViz sarimViz;
 
 int alexiData = 0;
 int danielData = 0;
@@ -19,7 +20,7 @@ void setup() {
   oscP5 = new OscP5(this, 44444);   //listening
 
   alexiViz = new AlexiViz();
-  sarimViz = new sarimViz();
+  sarimViz = new SarimViz();
 }
 
 void draw() {
