@@ -17,7 +17,7 @@ painlessMesh mesh;
 // -------------------------------
 // Sensor Setup
 
-const int vibrationPin = 32;
+const int vibrationPin = 34;
 
 // -------------------------------
 
@@ -29,7 +29,7 @@ Task taskSendMessage( TASK_SECOND * 1 , TASK_FOREVER, &sendMessage );
 String readSensors() {
   int vibrationVal = analogRead(vibrationPin);
 
-  String returnVibration = String(vibrationVal)
+  String returnVibration = String(vibrationVal);
   String returnVal = String("alexi--" + returnVibration);
 
   Serial.println(returnVal);

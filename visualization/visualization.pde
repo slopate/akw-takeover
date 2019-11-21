@@ -29,16 +29,13 @@ int frame = 0;
 int framesPer = 3600 * 4;
 void draw() {
 
-  alexiViz.draw(alexiData, danielData, sarimData, samData, sabrinaData);
-
-  
   // here we can switch between each of our classes
   if (frame < framesPer) {
     println("alexi");
-    // alexiViz.draw(alexiData, danielData, sarimData, samData, sabrinaData);
+    alexiViz.draw(alexiData, danielData, sarimData, samData, sabrinaData);
   } else if (frame < framesPer * 2) {
     println("sarim");
-    // sarimViz.draw(alexiData, danielData, sarimData, samData, sabrinaData);
+    sarimViz.draw(alexiData, danielData, sarimData, samData, sabrinaData);
   } else if (frame < framesPer * 3) {
     println("daniel");
     // daniel
