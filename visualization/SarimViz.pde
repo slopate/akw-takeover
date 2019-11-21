@@ -22,6 +22,8 @@ class SarimViz {
         {0, 0, 0}  // alexi
     };
 
+    int elapsedFrames = 0;
+
     /* --------------------------- Main draw method --------------------------- */
     
     void draw(int alexiData, 
@@ -29,11 +31,24 @@ class SarimViz {
               int[] samData, 
               int sarimData, 
               int[] sabrinaData) {
-                
+
+        // generate gradient if elapsed frames == 0
+        if (this.elapsedFrames > 10) {
+            this.setGradient(
+                0, 0, 
+                width, 
+                height, 
+                this.elementColors[int(random(5))][int(random(5))], 
+                this.elementColors[int(random(5))][int(random(5))]
+            );
+            this.elapsedFrames = 0;
+        } 
+        this.elapsedFrames++;
+        
         // if mesh not working, random inputs
         // int newData[][] = this.generateRandomData();
       
-            // get new data
+        // get new data
         int newData[][] = this.constructNewData(samData, danielData, sarimData, sabrinaData, alexiData);
   
         // draw element circles based on changed readings
@@ -95,6 +110,16 @@ class SarimViz {
             int randomColorIndex = int(random(5));
             fill(elementColor[randomColorIndex]);
             ellipse(x, y, ring, ring);
+        }
+    }
+
+    void setGradient(int x, int y, float w, float h, color c1, color c2) {
+        noFill();
+        for (int i = y; i <= y+h; i++) {
+            float inter = map(i, y, y+h, 0, 1);
+            color c = lerpColor(c1, c2, inter);
+            stroke(c);
+            line(x, i, x+w, i);
         }
     }
 }
