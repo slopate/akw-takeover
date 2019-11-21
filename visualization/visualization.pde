@@ -7,7 +7,7 @@ String val;
 
 AlexiViz alexiViz;
 SarimViz sarimViz;
-SabsViz sabsViz;
+DanielViz danielViz;
 
 int alexiData = 0;
 int danielData = 0;
@@ -22,25 +22,32 @@ void setup() {
 
   alexiViz = new AlexiViz();
   sarimViz = new SarimViz();
-  sabsViz = new SabsViz();
+  danielViz = new DanielViz();
 }
 
 int frame = 0;
 int framesPer = 3600 * 4;
 void draw() {
 
-  //// here we can switch between each of our classes
-  //if (frame < framesPer) {
-  //  alexiViz.draw(alexiData, danielData, samData, sarimData, sabrinaData);
-  //} else if (frame < framesPer * 2) {
-  //  sarimViz.draw(alexiData, danielData, samData, sarimData, sabrinaData);
-  //} else if (frame < framesPer * 3) {
-  //  // daniel
-  //} else if (frame < framesPer * 4) {
-    sabsViz.draw(alexiData, danielData, samData, sarimData, sabrinaData);
-  //} else {
-  //  frame = 0;
-  //}
+  alexiViz.draw(alexiData, danielData, sarimData, samData, sabrinaData);
+
+
+  // here we can switch between each of our classes
+  if (frame < framesPer) {
+    println("alexi");
+    // alexiViz.draw(alexiData, danielData, sarimData, samData, sabrinaData);
+  } else if (frame < framesPer * 2) {
+    println("sarim");
+    // sarimViz.draw(alexiData, danielData, sarimData, samData, sabrinaData);
+  } else if (frame < framesPer * 3) {
+    println("daniel");
+    // daniel
+  } else if (frame < framesPer * 4) {
+    println("sabrina");
+    // sabrina
+  } else {
+    frame = 0;
+  }
 
   frame++;
   println(frame);
