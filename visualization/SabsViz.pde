@@ -18,7 +18,7 @@ class SabsViz {
     img.resize(width, height);
   }
 
-  void draw(int alexiData, int danielData, int[] samData, int sarimData, int[] sabrinaData) {
+  void draw(int alexiData, int danielData, int sarimData, int[] samData, int[] sabrinaData) {
     
     // SABRINA ------------------------------------------------------
 
