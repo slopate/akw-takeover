@@ -48,7 +48,7 @@ class SabsViz {
 
     // DANIEL and ALEXI ------------------------------------------------------
     if (danielData == 1) {
-      danielRotation += .01;
+      danielRotation += .02;
     }
 
     pushMatrix();
@@ -92,8 +92,8 @@ class SabsViz {
     rotate(-HALF_PI);
     fill(#f8eb48, 150); // yellow
 
-    xDiff = map(samData[0], 0, 600, 30, 70);
-    yDiff = map(samData[1], 0, 600, 20, 40);
+    xDiff = map(samData[0], 0, 600, 40, 50);
+    yDiff = map(samData[1], 0, 600, 20, 30);
 
     for (int i = 0; i < numLines / 2; i++) {
       text(mytext[i], 10 + i*yDiff, 10 + i*xDiff);
