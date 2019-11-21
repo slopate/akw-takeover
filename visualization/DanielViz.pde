@@ -1,5 +1,13 @@
+int current = 0;
+
+PImage[] lava = new PImage[24];
+PImage[] intro = new PImage[17];
+PImage[] avatarstate = new PImage[23];
+PImage[] airball = new PImage[6];
+
 class DanielViz {
     DanielViz() {
+
         // load images
         //airball gif
         airball[0] = loadImage( "./frames/airball/frame_0_delay-0.08s.gif" );
