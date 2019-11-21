@@ -25,7 +25,7 @@ class AlexiViz {
         0, // sarim
         0, // sabrina
         0  // alexi
-    }
+    };
 
     int[][] constructNewData(int[] samData, int danielData, int sarimData, int[] sabrinaData, int alexiData) {
         summation[0] += samData[0] / 1500.0 + samData[1] / 1500.0 + samData[2] / 1500.0;

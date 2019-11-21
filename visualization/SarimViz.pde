@@ -62,7 +62,7 @@ class SarimViz {
         }
        
         // mandate delay
-        delay(2000);
+        // delay(2000);
     }
 
     /* ----------------------------- Helper methods ----------------------------- */

@@ -28,7 +28,7 @@ void setup() {
 }
 
 int frame = 0;
-int framesPer = 3600 * 4;
+int framesPer = 300 * 1;
 void draw() {
 
   // here we can switch between each of our classes

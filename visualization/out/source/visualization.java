@@ -27,6 +27,7 @@ String val;
 AlexiViz alexiViz;
 SarimViz sarimViz;
 DanielViz danielViz;
+SabsViz sabsViz;
 
 int alexiData = 0;
 int danielData = 0;
@@ -42,33 +43,32 @@ public void setup() {
   alexiViz = new AlexiViz();
   sarimViz = new SarimViz();
   danielViz = new DanielViz();
+  sabsViz = new SabsViz();
 }
 
 int frame = 0;
-int framesPer = 3600 * 4;
+int framesPer = 300 * 1;
 public void draw() {
 
-  alexiViz.draw(alexiData, danielData, sarimData, samData, sabrinaData);
-
-  
   // here we can switch between each of our classes
   if (frame < framesPer) {
     println("alexi");
-    // alexiViz.draw(alexiData, danielData, sarimData, samData, sabrinaData);
+    alexiViz.draw(alexiData, danielData, sarimData, samData, sabrinaData);
   } else if (frame < framesPer * 2) {
     println("sarim");
-    // sarimViz.draw(alexiData, danielData, sarimData, samData, sabrinaData);
+    sarimViz.draw(alexiData, danielData, sarimData, samData, sabrinaData);
   } else if (frame < framesPer * 3) {
     println("daniel");
     // daniel
   } else if (frame < framesPer * 4) {
     println("sabrina");
-    // sabrina
+    sabsViz.draw(alexiData, danielData, sarimData, samData, sabrinaData);
   } else {
     frame = 0;
   }
 
   frame++;
+  println(frame);
 
 }
 
@@ -120,8 +120,8 @@ class AlexiViz {
     int numElements = 5;
 
     int elementColors[][] = {
-        { 0xff5562D3, 0xff717AD3, 0xff959AD3, 0xff95C3D3, 0xff30A8D3 }, // sam - water 
-        { 0xff86A4AF, 0xff94C4D3, 0xff9AA6AF, 0xffCEDFEB, 0xff94A1A9 }, // daniel - air 
+        { 0xff5562D3, 0xff717AD3, 0xff959AD3, 0xff95C3D3, 0xff30A8D3 }, // sam - water
+        { 0xff86A4AF, 0xff94C4D3, 0xff9AA6AF, 0xffCEDFEB, 0xff94A1A9 }, // daniel - air
         { 0xff483123, 0xffFFDD80, 0xffAD7C54, 0xff201710, 0xffFF8080 }, // sarim - lava
         { 0xff9C4749, 0xffD24749, 0xffD29B47, 0xffAF8339, 0xffAF3464 }, // sabrina - fire
         { 0xff30D392, 0xff186948, 0xff4B9322, 0xff496D34, 0xff304823 }, // alexi - earth
@@ -135,7 +135,21 @@ class AlexiViz {
         {0, 0, 0}  // alexi
     };
 
+    float summation[] = {
+        0, // sam
+        0, // daniel
+        0, // sarim
+        0, // sabrina
+        0  // alexi
+    };
+
     public int[][] constructNewData(int[] samData, int danielData, int sarimData, int[] sabrinaData, int alexiData) {
+        summation[0] += samData[0] / 1500.0f + samData[1] / 1500.0f + samData[2] / 1500.0f;
+        summation[1] += danielData / 4096.0f;
+        summation[2] += sarimData;
+        summation[3] += sabrinaData[0] / 4096.0f + sabrinaData[1] / 4096.0f;
+        summation[4] += alexiData / 4096.0f;
+
         int newData[][] = {
             {samData[0], samData[1], samData[2]},   // sam
             {danielData, 0, 0},                     // daniel
@@ -161,10 +175,11 @@ class AlexiViz {
         for (float rad = 0; rad < TWO_PI; rad += TWO_PI / 5.0f) {
             fill(elementColors[i][0]);
             noStroke();
+            
             arc(width / 2, height / 2, width / 2, width / 2, rad, rad + TWO_PI / 5.0f, PIE);
             
-            fill(0, 0, 0);
-            text(data[i][2], width / 2 + width / 8 * cos(rad + TWO_PI / 10.0f), height / 2 + width / 8 * sin(rad + TWO_PI / 10.0f));
+            fill(255, 255, 255);
+            text(summation[i], width / 2 + width / 8 * cos(rad + TWO_PI / 10.0f), height / 2 + width / 8 * sin(rad + TWO_PI / 10.0f));
             
             i++;
         }
@@ -175,7 +190,7 @@ class AlexiViz {
     public void draw(int alexiData, int danielData, int sarimData, int[] samData, int[] sabrinaData) {
         int newData[][] = this.constructNewData(samData, danielData, sarimData, sabrinaData, alexiData);
         for (int i = 0; i < numElements; i++) {
-            this.drawChart(newData);
+            // this.drawChart(newData);
             if (this.dataChanged(this.prevData[i], newData[i])) {
                 // print("changed", i);
                 this.drawChart(newData);
@@ -184,7 +199,6 @@ class AlexiViz {
             }
         }
 
-        delay(2000);
     }
 }
 class DanielViz {
@@ -196,6 +210,116 @@ class DanielViz {
 
     }
 
+}
+String[] mytext;
+PImage img;
+float xDiff = 30;
+float yDiff = 30;
+int numLines = 26;
+
+float danielRotation = 1;
+boolean sarimBool = false;
+int sarimCount = 0;
+
+class SabsViz {
+  SabsViz() {
+    mytext = loadStrings("sabs_media/sabs.txt");
+    textSize(20);
+
+    img = loadImage("sabs_media/lava.jpg");
+    tint(255, 0); 
+    img.resize(width, height);
+  }
+
+  public void draw(int alexiData, int danielData, int sarimData, int[] samData, int[] sabrinaData) {
+    
+    // SABRINA ------------------------------------------------------
+
+    if (sabrinaData[1] == 0) {
+      background(0);
+    } else if (sabrinaData[1] < 3) {
+      background(0xfff8f1a5);
+    } else if (sabrinaData[1] < 6) {
+      background(0xfff88e3a);
+    } else if (sabrinaData[1] < 10) {
+      background(0xfff86336);
+    } else if (sabrinaData[1] >= 10) {
+      background(0xfff80600);
+    } 
+
+    // SARIM ------------------------------------------------------
+    if (sarimData == 1 || sarimBool == true) {
+      image(img, width/2, height/2);
+      tint(255, 180);
+      sarimBool = true;
+      sarimCount += 1;
+      if (sarimCount > 6) sarimBool = false;
+    } else {
+      image(img, width/2, height/2);
+      tint(255, 0);
+    }
+
+    // DANIEL and ALEXI ------------------------------------------------------
+    if (danielData == 1) {
+      danielRotation += .01f;
+    }
+
+    pushMatrix();
+    translate(width/4, height/2); 
+    rotate(danielRotation * radians(45));
+    fill(0xfff8964b); // orange
+    if (alexiData == 4095) ellipse(0, 0, 40, 40);
+    else rect(0, 0, 40, 40);
+    popMatrix();
+
+    pushMatrix();
+    translate(width/2, height/4); 
+    rotate(2 * danielRotation * radians(45));
+    fill(0xff63aaf8); // blue
+    if (alexiData == 4095) ellipse(0, 0, 70, 70);
+    else rect(0, 0, 70, 70);
+    popMatrix();
+
+    pushMatrix();
+    translate(width/2, 3*height/4); 
+    rotate(.5f * danielRotation * radians(45));
+    fill(0xffa6f87c); // green
+    if (alexiData == 4095) ellipse(0, 0, 100, 100);
+    else rect(0, 0, 100, 100);
+    popMatrix();
+
+    pushMatrix();
+    translate(3*width/4, height/2); 
+    rotate(4 * danielRotation * radians(45));
+    fill(0xffe5b1f8); // purple
+    if (alexiData == 4095) ellipse(0, 0, 10, 10);
+    else rect(0, 0, 10, 10);
+    popMatrix();
+
+    // SAM ------------------------------------------------------
+
+    float x = 0;
+    float y = height;
+    pushMatrix();
+    translate(x, y);
+    rotate(-HALF_PI);
+    fill(0xfff8eb48, 150); // yellow
+
+    xDiff = map(samData[0], 0, 600, 30, 70);
+    yDiff = map(samData[1], 0, 600, 20, 40);
+
+    for (int i = 0; i < numLines / 2; i++) {
+      text(mytext[i], 10 + i*yDiff, 10 + i*xDiff);
+    }
+    for (int i = numLines / 2; i < 3* numLines / 4; i++) {
+      text(mytext[i], height - 1.2f*i*yDiff, 10 + i*xDiff);
+    }
+    for (int i = 3* numLines / 4; i < numLines; i++) {
+      text(mytext[i], 10 + i*yDiff/2, 10 + i*xDiff);
+    }
+    popMatrix();
+    
+  }
 }
 class SarimViz {
 
