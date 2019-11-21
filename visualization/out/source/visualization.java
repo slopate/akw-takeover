@@ -26,6 +26,7 @@ String val;
 
 AlexiViz alexiViz;
 SarimViz sarimViz;
+DanielViz danielViz;
 
 int alexiData = 0;
 int danielData = 0;
@@ -40,10 +41,11 @@ public void setup() {
 
   alexiViz = new AlexiViz();
   sarimViz = new SarimViz();
+  danielViz = new DanielViz();
 }
 
 int frame = 0;
-int framesPer = 3 * 4;
+int framesPer = 3600 * 4;
 public void draw() {
 
   alexiViz.draw(alexiData, danielData, sarimData, samData, sabrinaData);
@@ -157,9 +159,16 @@ class AlexiViz {
     public void drawChart(int[][] data) {
         int i = 0;
         for (float rad = 0; rad < TWO_PI; rad += TWO_PI / 5.0f) {
-            fill(elementColors[i++][0]);
+            fill(elementColors[i][0]);
+            noStroke();
             arc(width / 2, height / 2, width / 2, width / 2, rad, rad + TWO_PI / 5.0f, PIE);
+            
+            fill(0, 0, 0);
+            text(data[i][2], width / 2 + width / 8 * cos(rad + TWO_PI / 10.0f), height / 2 + width / 8 * sin(rad + TWO_PI / 10.0f));
+            
+            i++;
         }
+
     }
 
 
@@ -177,6 +186,16 @@ class AlexiViz {
 
         delay(2000);
     }
+}
+class DanielViz {
+    DanielViz() {
+        // load images
+    }
+
+    public void draw(int alexiData, int danielData, int sarimData, int[] samData, int[] sabrinaData) {
+
+    }
+
 }
 class SarimViz {
 
