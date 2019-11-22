@@ -6,9 +6,11 @@
     - [LED ring](#led-ring)
     - [Enclosure](#enclosure)
     - [Activation algorithm](#activation-algorithm)
+  - [Schematic](#schematic)
   - [Technical challenges](#technical-challenges)
     - [Pins for LED output](#pins-for-led-output)
     - [Underpowered ESP](#underpowered-esp)
+    - [Conflicts with PainlessMesh](#conflicts-with-painlessmesh)
     - [Reducing the amount of wire needed](#reducing-the-amount-of-wire-needed)
 
 I decided to adopt the earth element, more specifically lava.
@@ -49,6 +51,10 @@ Once the four poles are activated, the completion animation sequence starts. The
 
 When the animation is complete, the activation message is sent over the mesh network.
 
+## Schematic
+
+![Schematic BB](./docs/schematic_bb.png)
+
 ## Technical challenges
 
 ### Pins for LED output
@@ -69,6 +75,10 @@ Not all pins were suitable. Those that were used successfully:
 ### Underpowered ESP
 
 With the joystick attached to 5V and GND, along with the 8 LEDs, the ESP32 would not flash, with an invalid packet header error. This was resolved by unplugging the joystick from power whenever the flash was in progress.
+
+### Conflicts with PainlessMesh
+
+The PainlessMesh library does not play nicely with delays in sensor code. My sensor relies a lot on delays in order to play the LED ring animation. In fact, any library that uses delays (e.g. AxisJoystick for denoising) fails when using PainlessMesh. So it was not possible for me to run a mesh node on my ESP, short of actually reverse-engineering the mesh protocol to send messages. To solve this, I partnered with Daniel's input, setting up GPIO communication and piggybacking off his node. Not only does this take advantage of the versatility of the mesh, but also plays well thematically, since our inputs (earth and air) are now physically close together. 
 
 ### Reducing the amount of wire needed
 
