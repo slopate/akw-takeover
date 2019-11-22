@@ -6,6 +6,7 @@
     - [LED ring](#led-ring)
     - [Enclosure](#enclosure)
     - [Activation algorithm](#activation-algorithm)
+  - [Schematic](#schematic)
   - [Technical challenges](#technical-challenges)
     - [Pins for LED output](#pins-for-led-output)
     - [Underpowered ESP](#underpowered-esp)
@@ -49,6 +50,10 @@ The user rotates the joystick to the four poles of the ring, activating each LED
 Once the four poles are activated, the completion animation sequence starts. The LEDs start blinking in order, starting with the north pole. The animation accelerates linearly with time, until at one point it is fast enough to "eat itself". The effect is achieved with tweaking delays.
 
 When the animation is complete, the activation message is sent over the mesh network.
+
+## Schematic
+
+![Schematic BB](./docs/schematic_bb.png)
 
 ## Technical challenges
 
